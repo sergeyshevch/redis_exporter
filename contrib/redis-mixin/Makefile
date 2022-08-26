@@ -1,13 +1,11 @@
-export PATH := /go/bin/:$(PATH)
-
-JSONNET_FMT := $(GOPATH)/bin/jsonnetfmt -n 2 --max-blank-lines 2 --string-style s --comment-style s
+JSONNET_FMT := jsonnetfmt -n 2 --max-blank-lines 2 --string-style s --comment-style s
 
 # no lint for now, fails with a lot of errors and needs cleaning up first
 all: deps fmt build clean
 
 deps:
 	go install github.com/monitoring-mixins/mixtool/cmd/mixtool@master
-	go install github.com/google/go-jsonnet/cmd/jsonnet@latest
+	go install github.com/google/go-jsonnet/cmd/jsonnetfmt@latest
 
 
 fmt:
