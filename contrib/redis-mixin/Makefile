@@ -1,3 +1,5 @@
+export PATH := /go/bin:$(PATH)
+
 JSONNET_FMT := jsonnetfmt -n 2 --max-blank-lines 2 --string-style s --comment-style s
 
 # no lint for now, fails with a lot of errors and needs cleaning up first
@@ -8,12 +10,10 @@ deps:
 	go install github.com/google/go-jsonnet/cmd/jsonnet@latest
 
 fmt:
-	PATH=$PATH:/go/bin
 	find . -name 'vendor' -prune -o -name '*.libsonnet' -print -o -name '*.jsonnet' -print | \
 		xargs -n 1 -- $(JSONNET_FMT) -i
 
 lint:
-	PATH=$PATH:/go/bin
 	find . -name 'vendor' -prune -o -name '*.libsonnet' -print -o -name '*.jsonnet' -print | \
 		while read f; do \
 			$(JSONNET_FMT) "$$f" | diff -u "$$f" -; \
