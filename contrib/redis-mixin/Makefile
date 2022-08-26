@@ -6,6 +6,9 @@ all: deps fmt build clean
 deps:
 	go install github.com/monitoring-mixins/mixtool/cmd/mixtool@master
 	go install github.com/google/go-jsonnet/cmd/jsonnet@latest
+	ls -la /go
+	ls -la /go/bin
+	env
 
 fmt:
 	find . -name 'vendor' -prune -o -name '*.libsonnet' -print -o -name '*.jsonnet' -print | \
