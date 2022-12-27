@@ -25,7 +25,7 @@ jobs:
       redis5:
         image: redis:5
         ports:
-          - 6379:6383
+          - 6383:6379
       redis6:
         image: redis:6.2
         ports:
@@ -33,4 +33,4 @@ jobs:
       redis7:
         image: redis:7.0
         ports:
-          - 6379:6384
+          - 6384:6379
