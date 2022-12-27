@@ -1,0 +1,36 @@
+name: "Build"
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: 1.19
+
+      - name: Build
+        run: go build -v ./...
+
+      - name: Test
+        run: go test -v ./...
+
+
+    services:
+      redis5:
+        image: redis:5
+        ports:
+          - 6379:6383
+      redis6:
+        image: redis:6.2
+        ports:
+          - 6379:6379
+      redis7:
+        image: redis:7.0
+        ports:
+          - 6379:6384
